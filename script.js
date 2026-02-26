@@ -94,7 +94,7 @@ function validateForm(name, phone, doctor, date, time) {
         isValid = false;
     }
 
-    if (!phone || !/^\d{10}$/.test(phone.replace(/[\s-]/g, ''))) {
+    if (!phone || !/^\d{11}$/.test(phone.replace(/[\s-]/g, ''))) {
         showError('phoneError', 'Please enter a valid 10-digit phone number', 'phoneNumber');
         isValid = false;
     }
