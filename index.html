@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Appointment Booking System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-hospital"></i> HealthCare Clinic</h1>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#booking" class="nav-link">Book Appointment</a>
+                <a href="#dashboard" class="nav-link">My Appointments</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Landing Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Simplify Your Healthcare Journey</h2>
+                <p class="hero-subtitle">Book, manage, and track your medical appointments with ease</p>
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                        <h3>No More Chaos</h3>
+                        <p>Eliminate scheduling conflicts and reduce missed appointments</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Instant Booking</h3>
+                        <p>Book your appointment in seconds with real-time availability</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                        <h3>Secure & Organized</h3>
+                        <p>Your appointment data is safely stored and easily accessible</p>
+                    </div>
+                </div>
+                <a href="#booking" class="cta-button">Book Appointment Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section id="booking" class="booking-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Book Your Appointment</h2>
+                <p>Fill in the details below to schedule your visit</p>
+            </div>
+            
+            <div class="booking-card">
+                <form id="appointmentForm" class="appointment-form">
+                    <!-- Patient Name -->
+                    <div class="form-group">
+                        <label for="patientName" class="form-label">
+                            Full Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="patientName" 
+                            class="form-input" 
+                            placeholder="Enter your full name"
+                            required
+                        >
+                        <span class="error-message" id="nameError"></span>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-group">
+                        <label for="phoneNumber" class="form-label">
+                            Phone Number <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="phoneNumber" 
+                            class="form-input" 
+                            placeholder="Enter your phone number"
+                            required
+                        >
+                        <span class="error-message" id="phoneError"></span>
+                    </div>
+
+                    <!-- Doctor Selection -->
+                    <div class="form-group">
+                        <label for="doctorSelect" class="form-label">
+                            Select Doctor <span class="required">*</span>
+                        </label>
+                        <select id="doctorSelect" class="form-input" required>
+                            <option value="">Choose a doctor...</option>
+                            <option value="Dr. Sarah Johnson - General Physician">Dr. Sarah Johnson - General Physician</option>
+                            <option value="Dr. Michael Chen - Cardiologist">Dr. Michael Chen - Cardiologist</option>
+                            <option value="Dr. Emily Davis - Pediatrician">Dr. Emily Davis - Pediatrician</option>
+                            <option value="Dr. James Wilson - Orthopedic">Dr. James Wilson - Orthopedic</option>
+                            <option value="Dr. Lisa Anderson - Dermatologist">Dr. Lisa Anderson - Dermatologist</option>
+                        </select>
+                        <span class="error-message" id="doctorError"></span>
+                    </div>
+
+                    <!-- Date Selection -->
+                    <div class="form-group">
+                        <label for="appointmentDate" class="form-label">
+                            Appointment Date <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="date" 
+                            id="appointmentDate" 
+                            class="form-input"
+                            required
+                        >
+                        <span class="error-message" id="dateError"></span>
+                    </div>
+
+                    <!-- Time Slot Selection -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            Select Time Slot <span class="required">*</span>
+                        </label>
+                        <div id="timeSlots" class="time-slots-grid"></div>
+                        <span class="error-message" id="timeError"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-button">
+                        Book Appointment
+                    </button>
+                </form>
+
+                <!-- Success/Error Messages -->
+                <div id="formMessage" class="form-message"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointments Dashboard Section -->
+    <section id="dashboard" class="dashboard-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Appointments</h2>
+                <p>View and manage your scheduled appointments</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label for="filterDate" class="filter-label">Filter by Date:</label>
+                    <input type="date" id="filterDate" class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <label for="filterDoctor" class="filter-label">Filter by Doctor:</label>
+                    <select id="filterDoctor" class="filter-input">
+                        <option value="">All Doctors</option>
+                        <option value="Dr. Sarah Johnson - General Physician">Dr. Sarah Johnson</option>
+                        <option value="Dr. Michael Chen - Cardiologist">Dr. Michael Chen</option>
+                        <option value="Dr. Emily Davis - Pediatrician">Dr. Emily Davis</option>
+                        <option value="Dr. James Wilson - Orthopedic">Dr. James Wilson</option>
+                        <option value="Dr. Lisa Anderson - Dermatologist">Dr. Lisa Anderson</option>
+                    </select>
+                </div>
+                <button id="clearFilters" class="clear-filters-btn">Clear Filters</button>
+            </div>
+
+            <!-- Appointments List -->
+            <div id="appointmentsList" class="appointments-list"></div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon"><i class="fas fa-clipboard-list"></i></div>
+                <h3>No Appointments Found</h3>
+                <p>You haven't booked any appointments yet. Start by booking your first appointment!</p>
+                <a href="#booking" class="cta-button">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 HealthCare Clinic. All rights reserved.</p>
+            <p>Simplifying healthcare, one appointment at a time.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
